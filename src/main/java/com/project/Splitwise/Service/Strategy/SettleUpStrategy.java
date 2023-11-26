@@ -1,4 +1,4 @@
-package com.project.Splitwise.Strategy;
+package com.project.Splitwise.Service.Strategy;
 
 import com.project.Splitwise.DTO.TransactionDTO;
 import com.project.Splitwise.Models.Expense;
