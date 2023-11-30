@@ -1,6 +1,7 @@
 package com.project.Splitwise.Service.IMPLs;
 import com.project.Splitwise.DTO.TransactionDTO;
 import com.project.Splitwise.Exception.GroupNotFoundException;
+import com.project.Splitwise.Models.Expense;
 import com.project.Splitwise.Models.Group;
 import com.project.Splitwise.Repository.GroupRepository;
 import com.project.Splitwise.Service.GroupService;
@@ -28,5 +29,22 @@ public class groupServiceImpl implements GroupService {
 
         List<TransactionDTO> transactions = strategy.settleUp(savedGroup.get().getExpenses());
         return transactions;
+    }
+
+    //calculating the TotalAmount spend by a group
+    @Override
+    public double totalAmountSpentByUsers(int groupId) throws GroupNotFoundException {
+        Group group=groupRepository.findById(groupId)
+                .orElseThrow(()-> new GroupNotFoundException("The Group with "+groupId +" is not Present"));
+        List<Expense>expenses=group.getExpenses();
+
+        int totalAmt=0;
+        for(Expense expense:expenses){//iterating through the list
+            totalAmt+=expense.getAmount();
+        }
+
+        group.setTotalAmountSpend(totalAmt);
+        groupRepository.save(group);
+        return totalAmt;
     }
 }
