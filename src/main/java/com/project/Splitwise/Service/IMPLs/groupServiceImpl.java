@@ -1,4 +1,5 @@
 package com.project.Splitwise.Service.IMPLs;
+import com.project.Splitwise.DTO.GroupDTO;
 import com.project.Splitwise.DTO.TransactionDTO;
 import com.project.Splitwise.Exception.GroupNotFoundException;
 import com.project.Splitwise.Models.Expense;
@@ -7,6 +8,7 @@ import com.project.Splitwise.Repository.GroupRepository;
 import com.project.Splitwise.Service.GroupService;
 import com.project.Splitwise.Service.Strategy.SettleUpStrategy;
 import com.project.Splitwise.Service.Strategy.SettleUpStrategyFactory;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ public class groupServiceImpl implements GroupService {
     @Autowired
     private GroupRepository groupRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
     @Override
     public List<TransactionDTO> settleUpByGroupId(int groupId) throws GroupNotFoundException {
 
@@ -46,5 +50,13 @@ public class groupServiceImpl implements GroupService {
         group.setTotalAmountSpend(totalAmt);
         groupRepository.save(group);
         return totalAmt;
+    }
+
+    //Creating a New group
+    @Override
+    public GroupDTO createGroup(GroupDTO groupDTO) {
+        Group group=modelMapper.map(groupDTO,Group.class);
+        Group savedGroup=groupRepository.save(group);
+        return modelMapper.map(savedGroup,GroupDTO.class);
     }
 }

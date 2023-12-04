@@ -35,37 +35,37 @@ public class initServiceImpl implements initService {
 
         User user1=User.builder()
                 .Name("Yash")
-                .Email("yash@gmai.com")
+                .Email("yash@gmail.com")
                 .PhoneNumber("8475635462")
                 .groups(List.of(savedGroup)).build();
 
         User user2=User.builder()
                 .Name("Sandeep")
-                .Email("sandy@gmai.com")
+                .Email("sandy@gmail.com")
                 .PhoneNumber("7485637221")
                 .groups(List.of(savedGroup)).build();
 
         User user3=User.builder()
                 .Name("Swapnil")
-                .Email("swapnil@gmai.com")
+                .Email("swapnil@gmail.com")
                 .PhoneNumber("9940506070")
                 .groups(List.of(savedGroup)).build();
 
         User user4=User.builder()
                 .Name("Amit")
-                .Email("amit@gmai.com")
+                .Email("amit@gmail.com")
                 .PhoneNumber("8475635662")
                 .groups(List.of(savedGroup)).build();
 
         User user5=User.builder()
                 .Name("Pratik")
-                .Email("pratik@gmai.com")
+                .Email("pratik@gmail.com")
                 .PhoneNumber("9975635662")
                 .groups(List.of(savedGroup)).build();
 
         User user6=User.builder()
                 .Name("Sahil")
-                .Email("sahil@gmai.com")
+                .Email("sahil@gmail.com")
                 .PhoneNumber("8475635782")
                 .groups(List.of(savedGroup)).build();
 

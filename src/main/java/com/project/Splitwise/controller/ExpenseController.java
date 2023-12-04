@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/expense")
+@RequestMapping("/expenses")
 public class ExpenseController {
     @Autowired
     private ExpenseService expenseService;

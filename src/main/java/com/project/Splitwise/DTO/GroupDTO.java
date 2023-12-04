@@ -14,6 +14,4 @@ public class GroupDTO {
     private String GroupName;
     private String Description;
     private Currency DefaultCurrency;
-    private double TotalAmountSpend;
-
 }

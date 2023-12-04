@@ -1,17 +1,18 @@
 package com.project.Splitwise.controller;
-import com.project.Splitwise.Service.GroupService;
+
+import com.project.Splitwise.DTO.GroupDTO;
 import com.project.Splitwise.DTO.TransactionDTO;
 import com.project.Splitwise.Exception.GroupNotFoundException;
+import com.project.Splitwise.Service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/group")
 public class GroupController {
     @Autowired
     private GroupService groupService;
@@ -28,6 +29,13 @@ public class GroupController {
     public ResponseEntity getTotalAmount(@PathVariable("groupId")int groupId) throws GroupNotFoundException {
         double totalAmount=groupService.totalAmountSpentByUsers(groupId);
         return new ResponseEntity<>("Total Amount Spent by the group is "+totalAmount, HttpStatus.OK);
+    }
+
+
+    @PostMapping("/createGroup")
+    public ResponseEntity CreateGroup(@RequestBody GroupDTO groupDTO){
+        GroupDTO savedGroup = groupService.createGroup(groupDTO);
+        return new ResponseEntity<>(savedGroup,HttpStatus.CREATED);
     }
 
 }
