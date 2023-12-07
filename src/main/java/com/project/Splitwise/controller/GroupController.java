@@ -35,7 +35,7 @@ public class GroupController {
     @PostMapping("/createGroup")
     public ResponseEntity CreateGroup(@RequestBody GroupDTO groupDTO){
         GroupDTO savedGroup = groupService.createGroup(groupDTO);
-        return new ResponseEntity<>(savedGroup,HttpStatus.CREATED);
+        return new ResponseEntity<>("Group Has Been Created Successfully",HttpStatus.CREATED);
     }
 
 }

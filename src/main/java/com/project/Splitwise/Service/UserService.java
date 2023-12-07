@@ -11,7 +11,6 @@ public interface UserService {
     UserDTO getUserById(int userId) throws UserNotFoundException;
     //finding the GroupInformation of a Particular user with UserId
     List<GroupDTO> getGroupsOfUser(int userId) throws UserNotFoundException;
-
     void addUserToGroup(int userId, int groupId)throws UserNotFoundException, GroupNotFoundException;
     UserDTO registerUser(UserDTO userDTO);
 }

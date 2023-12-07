@@ -1,15 +1,19 @@
 package com.project.Splitwise.Service.IMPLs;
 
 import com.project.Splitwise.DTO.ExpenseDTO;
+import com.project.Splitwise.Exception.ExpenseNotFoundException;
 import com.project.Splitwise.Exception.GroupNotFoundException;
 import com.project.Splitwise.Models.Expense;
 import com.project.Splitwise.Models.Group;
+import com.project.Splitwise.Models.UserExpense;
+import com.project.Splitwise.Models.UserExpenseType;
 import com.project.Splitwise.Repository.ExpenseRepository;
 import com.project.Splitwise.Repository.GroupRepository;
 import com.project.Splitwise.Service.ExpenseService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,9 +48,19 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public double getTotalAmountForExpense(int expenseId) throws GroupNotFoundException {
-        return 0;
+    public double getTotalAmountForExpense(int expenseId) throws GroupNotFoundException, ExpenseNotFoundException {
+        Expense expense=expenseRepository.findById(expenseId)
+                .orElseThrow(()->new ExpenseNotFoundException("Expense with the "+expenseId+ " is not Created"));
+
+        List<UserExpense>userExpenses=expense.getUserExpenses();
+        double totalAmount=0;
+        for(UserExpense expense1:userExpenses){
+            if(expense1.getUserExpenseType().equals(UserExpenseType.Paid)){
+                totalAmount+=  expense1.getAmount();
+            }
+        }
+        expense.setAmount(totalAmount);
+        expenseRepository.save(expense);
+        return totalAmount;
     }
-
-
 }
