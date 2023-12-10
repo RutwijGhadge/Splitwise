@@ -250,7 +250,7 @@ Before you begin, ensure you have met the following requirements:
     ```bash
           {
             "amount" : 600,
-            "userExpenseType" : "HADTOPAY"
+            "userExpenseType" : "HadToPay"
           }          
   * **Response:**
     
