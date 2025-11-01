@@ -24,7 +24,6 @@ public class GroupController {
     }
 
     //get the total amount spend by a user from a particular group
-
     @GetMapping("{groupId}/getExpense")//mapping a call
     public ResponseEntity getTotalAmount(@PathVariable("groupId")int groupId) throws GroupNotFoundException {
         double totalAmount=groupService.totalAmountSpentByUsers(groupId);
@@ -33,7 +32,7 @@ public class GroupController {
 
 
     @PostMapping("/createGroup")
-    public ResponseEntity CreateGroup(@RequestBody GroupDTO groupDTO){
+    public ResponseEntity createGroup(@RequestBody GroupDTO groupDTO){
         GroupDTO savedGroup = groupService.createGroup(groupDTO);
         return new ResponseEntity<>("Group Has Been Created Successfully",HttpStatus.CREATED);
     }
