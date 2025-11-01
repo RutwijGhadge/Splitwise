@@ -27,7 +27,7 @@ public class initServiceImpl implements initService {
     @Override
     public void init() {
         Group group=new Group();
-        group.setId(1);
+        group.setId(1L  );
         group.setName("Goa Trip");
         group.setDescription("Goa Trip 2023");
         group.setDefaultCurrency(Currency.INR);

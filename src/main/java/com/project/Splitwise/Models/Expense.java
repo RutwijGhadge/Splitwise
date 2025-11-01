@@ -18,7 +18,16 @@ public class Expense extends BaseClass{
     private Currency currency;
 
     @OneToMany
-    @JoinColumn(name = "splitwise_expense_id")
+    @JoinColumn(name = "splitwise_expense_id") //One to Many (UniDirectional relationship with Expense : UserExpense table -> It will tell JPA to join with expense id column
     private List<UserExpense> userExpenses;
 }
-//Expense -> currency -> 1:1
+//Expense -> Currency -> 1:1
+/*
+   Expense : UserExpense
+      1        M
+      1        1
+
+    Group      Expense   (UniDirectional)
+      1         M
+      1         1
+ */
